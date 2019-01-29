@@ -31,3 +31,14 @@ or
 sudo docker run -it -p 5000:80 dash bash
 gunicorn -b 0.0.0.0:80 main:app
 ```
+
+# Triaging [bug #2](https://github.com/tiangolo/meinheld-gunicorn-flask-docker/issues/2)
+The combination of the `static_folder='assets'` option in the line
+```
+app = flask.Flask(__name__, static_folder='assets')
+```
+and the setting
+```
+dash_app.scripts.config.serve_locally = True
+```
+seem to be responsible for stalling the `meinheld` runner. Removing either of these - or both - will prevent the stalling.
