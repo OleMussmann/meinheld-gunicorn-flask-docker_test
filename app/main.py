@@ -1,13 +1,10 @@
 import dash
-import flask
 import dash_html_components as html
+import flask
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_folder='assets')
 dash_app = dash.Dash(__name__, server=app)
 
-dash_app.layout = html.Div([html.H3('Hello World')])
-dash_app.title = "mytitle"
+dash_app.layout = html.Div([html.H3("abcde")])
 
-@app.route("/")
-def index():
-    return dash_app
+dash_app.scripts.config.serve_locally = True
